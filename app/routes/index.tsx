@@ -7,8 +7,8 @@ import { fs } from "~/utils/fs-promises.server";
 
 export const loader = async (args: LoaderArgs) => {
   // Find the absolute path of the json directory
-  // Note: As of July 16, 2022, Vercel doesn't include the json directory when using process.cwd() or path.join(). The workaround is to use __dirname and template literals
-  const jsonDirectory = `${__dirname}/../json`;
+  // Note: As of July 16, 2022, Vercel doesn't include the json directory when using process.cwd() or path.join(). The workaround is to use __dirname and concatenate the json directory to it.
+  const jsonDirectory = __dirname + "/../json";
   // Read the json data file data.json
   const fileContents = await fs.readFile(jsonDirectory + "/data.json", "utf8");
   // Parse the json data file contents into a json object
